@@ -50,10 +50,10 @@ app.post('/api/students', (req, res) => {
 })
 
 app.delete('/api/students/:index', (req, res) => {
-    rollbar.warning("User deleted a student")
     const targetIndex = +req.params.index
     
     students.splice(targetIndex, 1)
+    rollbar.warning("User deleted a student")
     res.status(200).send(students)
 })
 
