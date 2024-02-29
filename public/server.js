@@ -38,10 +38,10 @@ app.post('/api/students', (req, res) => {
            students.push(name)
            res.status(200).send(students)
        } else if (name === ''){
-        //    rollbar.critical("User attempted to enter a ghost")
+           rollbar.critical("User attempted to enter a ghost")
            res.status(400).send('You must enter a name.')
        } else {
-        //    rollbar.warning("User tried to duplicate data")
+           rollbar.warning("User tried to duplicate data")
            res.status(400).send('That student already exists.')
        }
    } catch (err) {
@@ -50,6 +50,7 @@ app.post('/api/students', (req, res) => {
 })
 
 app.delete('/api/students/:index', (req, res) => {
+    rollbar.warning("User deleted a student")
     const targetIndex = +req.params.index
     
     students.splice(targetIndex, 1)
